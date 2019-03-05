@@ -1,0 +1,119 @@
+2.14.7:
+    - Revert upgrade to OpenStack python clients to the old version used before 2.13.0
+2.14.6:
+    - By default, don't allow using an existing floating IP if it had already been allocated.
+2.14.3:
+    - Fix check subnet cidr for fixed ip.
+2.14.2:
+    - Provide a user friendly message when VM fails.
+2.14.1:
+    - Update network list/ips for external server.
+2.14.0:
+    - Support attach ports to external server.
+2.13.1:
+    - Support disconnect security_group from port.
+2.13.0:
+    - Update 'allowed_address_pairs' on external port's.
+2.12.1:
+    - Update openstack clients versions
+2.12.0:
+    - Add reboot operation for server
+2.11.1:
+    - Provide operation default values in signature of operations/wrappers instead of plugin.yaml. Affects: server, volume, and floating IP operations.
+2.11.0:
+    - Ensure deletion of resources that were created under a create_if_missing condition.
+    - Check for network ID provided as part of port node property.
+    - Add support for static routes
+    - Add runtime properties for ipv4 and ipv6 addresses
+2.10.0:
+    - RBAC policy support added
+    - Flavor access and flavor extra-specs support added
+2.9.8:
+    - Add handling for bootable volume attribute.
+    - Change port fixed ip handling code to permit ports on more than one subnet.
+2.9.7:
+    - Add IPv6 Example
+    - Base internal volume bootable logic on API bootable flag.
+2.9.6: Correctly set the availability zone runtime property when using an external volume.
+2.9.5: Creating servers with multiple security groups.
+2.9.4: Backporting change from 3.0.0 dev branch.
+2.9.3: Improve Host Aggregate members handling.
+2.9.2:
+    - Handle servers that are in a powering off state during stop operation.
+2.9.1:
+    - Fix a bug introduced in 2.7.6 when setting fixed_ip via args.
+    - Update CircleCI v2.
+2.9.0:
+    - Add Support for backup/restore actions.
+    - Fix bug in server-port-floating-ip handling.
+2.8.2:
+    - Add attach operation for server-port in order to support heal for server with floating ip.
+2.8.1:
+    - Change floating IP network priority to 1-property 2-relationship 3-provider-context.
+    - Change floating IP by relationship to use ID retrieval method.
+2.8.0:
+    - Add Support for resource_id in operation inputs.
+2.7.6:
+    - Improve Handling of fixed IPs on Ports.
+2.7.5:
+    - Improve Quota retrieval.
+2.7.4:
+    - Allow passing 'true' string for True boolean for authentication parameters.
+2.7.3:
+    - Resolve issue with merging openstack config
+2.7.2:
+    - Allow openstack_config keys to be empty, in case these values are taken from `openstack-config.json`.
+    - Fix bug where key type runtime properties were incorrectly assigned.
+2.7.1:
+    - Support identify floating ip network via relationship in floating ip.
+    - Improve list images in glance image type.
+2.7.0:
+    - Add support user type, adding users to projects, and providing quotas for users.
+    - Add support flavor type.
+    - Add support host aggregate type.
+2.6.0:
+    - Added ability to configure how log records, emitted by the underlying OpenStack client libraries,
+      are handled. By default, these are now also emitted to Cloudify's context logger (in debug level).
+    - Added validation for the openstack_config sections.
+2.5.2:
+    - Added ability to provide CA cert for connecting to OpenStack.
+2.5.1:
+    - Allow passing version parameter to nova client.
+2.4.1.1:
+    - Fix router overwrite bug introduced in 2.4.1.
+2.4.1:
+    - Improve router update (configure step).
+2.4.0:
+    - Add Router Update (configure step).
+2.3.0:
+    - Remove requirement on management_network_name property.
+2.2.0:
+    - Fix duplicated mapping key in plugin.yaml.
+    - Create Server with security groups from instance relationships. This prevents a window of time when a server can
+      be unsecured. (OPENSTACK-38)
+    - Fix floating IP detach issue. (OPENSTACK-12)
+    - Allow openstack_config as runtime property. (OPENSTACK-112)
+    - Fix key creation when folders don't exist.  (OPENSTACK-7)
+2.0.1:
+    - Don't overwrite server['image'] when server is booted from volume
+    - Fix loading auth_url from environment (OPENSTACK-101)
+    - Raise an error if server is not attached to a network. Previously an IndexError would be raised.
+    - Make sure security_group is removed if a later step (rule creation) fails (OPENSTACK-106)
+    - Fix attempt to access `volume.display_name` (is now .name) (OPENSTACK-108)
+    - Correctly handle nova_url and neutron_url in openstack_configuration (these are deprecated) (OPENSTACK-109)
+2.0:
+    - Don't require a Server image to be specified if a boot_volume is attached
+    - Add support for keystone auth v3. auth_url setting must now include version
+    - Upgraded openstack library dependencies
+    - Use availability_zone from connected boot_volume if Server doesn't specify
+    - Embed full docs in plugin repo. Now using sphinxify sphinx extension
+1.5:
+    - Create project, assign existing users with roles and customize quotas.
+    - Create image from file (local workflow only) or url.
+    - Add conditional creation to all resources. Create a resource only if it doesn't already exist. Previously, could
+      either use an existing resource, or create it.
+    - Boot server from volume. Support boot from block storage and not only from image like in previous versions.
+    - Fix connect port to security group race-condition.
+    - Get mac address from port after creation.
+    - Raise error also when external network is missing in floating ip creation. Previously, an error was raised only
+      when floating network id or name was missing.
